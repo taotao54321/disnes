@@ -1,0 +1,16 @@
+[package]
+name = "disnes"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.71"
+arrayvec = "0.7.2"
+clap = { version = "4.2.7", features = ["derive"] }
+derive_more = { version = "0.99.17", default-features = false, features = ["display"] }
+env_logger = "0.10.0"
+itertools = "0.10.5"
+log = "0.4.17"
+serde = { version = "1.0.160", features = ["derive"] }
+thiserror = "1.0.40"
+toml = "0.7.3"

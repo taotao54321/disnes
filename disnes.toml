@@ -1,0 +1,120 @@
+# disnes 設定例。
+# 設定はカレントディレクトリの disnes.toml から読み込まれる。
+
+memory = [
+    { start = 0, len = 0x800, readable = true, writable = true, executable = true },
+
+    { start = 0x2000, len = 1, writable = true },
+    { start = 0x2001, len = 1, writable = true },
+    # まれに $2002 に書き込むゲームがあるので注意。
+    { start = 0x2002, len = 1, readable = true },
+    { start = 0x2003, len = 1, writable = true },
+    # $2004 を読み取るゲームはほとんどない。
+    { start = 0x2004, len = 1, writable = true },
+    { start = 0x2005, len = 1, writable = true },
+    { start = 0x2006, len = 1, writable = true },
+    { start = 0x2007, len = 1, readable = true, writable = true },
+
+    # 全ての APU チャンネルは 4 つのレジスタを持つとしておく。
+    # たまに $4009 や $400D に書き込むゲームがあるため。
+    { start = 0x4000, len = 4, writable = true },
+    { start = 0x4004, len = 4, writable = true },
+    { start = 0x4008, len = 4, writable = true },
+    { start = 0x400C, len = 4, writable = true },
+    { start = 0x4010, len = 4, writable = true },
+    { start = 0x4014, len = 1, writable = true },
+    { start = 0x4015, len = 1, readable = true, writable = true },
+    { start = 0x4016, len = 1, readable = true, writable = true },
+    { start = 0x4017, len = 1, readable = true, writable = true },
+
+    # $4020-$FFFF はマッパーに応じて設定する。
+    { start = 0x8000, len = 0x8000, readable = true, writable = true, executable = true },
+]
+
+[[banks]]
+name = "PRG0"
+start = 0x8000
+len = 0x4000
+file = "prg.bin"
+file_offset = 0
+cdl = "prg.cdl"
+cdl_offset = 0
+
+[[banks]]
+name = "PRG1"
+start = 0x8000
+len = 0x4000
+file = "prg.bin"
+file_offset = 0x4000
+cdl = "prg.cdl"
+cdl_offset = 0x4000
+
+[[banks]]
+name = "PRG2"
+start = 0x8000
+len = 0x4000
+file = "prg.bin"
+file_offset = 0x8000
+cdl = "prg.cdl"
+cdl_offset = 0x8000
+
+[[banks]]
+name = "PRG3"
+start = 0x8000
+len = 0x4000
+file = "prg.bin"
+file_offset = 0xC000
+cdl = "prg.cdl"
+cdl_offset = 0xC000
+
+[[banks]]
+name = "PRG4"
+start = 0x8000
+len = 0x4000
+file = "prg.bin"
+file_offset = 0x10000
+cdl = "prg.cdl"
+cdl_offset = 0x10000
+
+[[banks]]
+name = "PRG5"
+start = 0x8000
+len = 0x4000
+file = "prg.bin"
+file_offset = 0x14000
+cdl = "prg.cdl"
+cdl_offset = 0x14000
+
+[[banks]]
+name = "PRG6"
+start = 0x8000
+len = 0x4000
+file = "prg.bin"
+file_offset = 0x18000
+cdl = "prg.cdl"
+cdl_offset = 0x18000
+
+[[banks]]
+name = "PRG7"
+start = 0xC000
+len = 0x4000
+file = "prg.bin"
+file_offset = 0x1C000
+cdl = "prg.cdl"
+cdl_offset = 0x1C000
+fixed = true
+
+# 解析設定。ここではデフォルトのままにしている。
+[config.analysis]
+# 普通は NMI, RESET 割り込みは必ず使われる。
+use_nmi = true
+use_reset = true
+# IRQ 割り込みを使わないゲームならここを false にする。
+use_irq = true
+
+# BRK 命令を使うゲームは少ない(が、DQ3, DQ4 では使われている)。
+allow_brk = false
+# CLV 命令を使うゲームはほとんどない。
+allow_clv = false
+# SED 命令を使うゲームはほとんどない。
+allow_sed = false
