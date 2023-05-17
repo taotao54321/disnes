@@ -13,7 +13,7 @@ pub fn output_assembly<W: Write>(wtr: &mut W, asm: &Assembly) -> anyhow::Result<
     Ok(())
 }
 
-/// アセンブリ先頭の `.org` 宣言やラベル定義などを出力する。
+/// アセンブリ先頭の `.segment` 宣言やラベル定義などを出力する。
 fn out_preamble<W: Write>(wtr: &mut W, asm: &Assembly) -> anyhow::Result<()> {
     // .segment 宣言。
     writeln!(
