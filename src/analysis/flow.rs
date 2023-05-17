@@ -17,7 +17,6 @@ pub(super) fn analyze(analysis: &mut Analysis, input: &Input) {
 }
 
 /// `NotCode` にしか到達しない制御フローを `NotCode` とする。
-/// また、孤立した rti, rts 命令の処理も行う。
 fn analyze_notcode(analysis: &mut Analysis, input: &Input) {
     // 以下のような制御フローグラフ G(V, E) を考える:
     //
