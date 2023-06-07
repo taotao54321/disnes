@@ -64,7 +64,7 @@ fn set_handler(
 
     // 割り込みハンドラのアドレスが既に NotCode とされていたら単に警告する。
     if analysis[dst] == AnalysisKind::NotCode {
-        warn!("{name} handler address {dst:#04X} is NotCode");
+        warn!("{name} handler address {dst:#06X} is NotCode");
         return;
     }
 

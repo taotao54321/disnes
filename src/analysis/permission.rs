@@ -14,7 +14,7 @@ pub(super) fn analyze(analysis: &mut Analysis, input: &Input) {
         if !input.permissions()[addr].is_executable() {
             // 既に Code とされていたら警告だけ出す。
             if analysis[addr] == AnalysisKind::Code {
-                warn!("address {addr:#04X} is Code and unexecutable");
+                warn!("address {addr:#06X} is Code and unexecutable");
             } else {
                 analysis[addr] = AnalysisKind::NotCode;
             }
